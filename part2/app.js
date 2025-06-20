@@ -24,7 +24,7 @@ app.post('/login', async (req, res) => {
       [username]
     );
 
-    if 
+    if (rows.length)
     const user = rows[0];
     req.session.userId = user.user_id;
     req.session.role = user.role;
