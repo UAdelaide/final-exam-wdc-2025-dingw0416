@@ -9,6 +9,11 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(session({
+  secret: 'mysecretkey123', // ✅ 直接写死密钥（仅限本地）
+  resave: false,
+  saveUninitialized: false
+}));
 
 // Session
 app.use(session({
