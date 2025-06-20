@@ -95,6 +95,8 @@
             error.value = 'Failed to load walk requests';
           }
         }
+
+        
         async function loadMyDogs() {
           try {
             const res = await fetch('/api/users/mydogs');
@@ -105,6 +107,7 @@
             error.value = 'Could not fetch dogs';
           }
         }
+
         async function submitWalkRequest() {
           try {
             const res = await fetch('/api/walks', {
