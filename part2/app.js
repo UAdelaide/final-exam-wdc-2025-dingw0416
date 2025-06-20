@@ -14,6 +14,7 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app
 
 // -------- Login Route --------
 app.post('/login', async (req, res) => {
