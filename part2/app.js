@@ -35,7 +35,7 @@ app.post('/login', async (req, res) => {
         res.redirect('/walker-dashboard.html');
       } else {
         res.redirect('/');
-    }
+      }
 
   } catch (err) {
     console.error('Login error:', err);
