@@ -1,7 +1,6 @@
 // app.js
 const express = require('express');
 const mysql = require('mysql2/promise');
-const path = require('path');
 
 async function main() {
 
@@ -24,7 +23,9 @@ async function main() {
   }
 
   const app = express();
+
   app.use(express.json());
+  app.use(express.static(path.join(__dirname, 'public')));
 
   // GET /api/dogs
   app.get('/api/dogs', async (req, res) => {
