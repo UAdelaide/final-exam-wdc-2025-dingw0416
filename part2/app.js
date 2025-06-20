@@ -47,6 +47,8 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+// -------- Login Route --------
+
 // -------- Protected Dashboards --------
 function ensureAuthenticated(req, res, next) {
   if (req.session.userId) return next();
