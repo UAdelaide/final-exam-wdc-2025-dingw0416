@@ -22,6 +22,7 @@ let pool;
     console.error(' Failed to connect to database:', err);
     process.exit(1);
   }
+  
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
