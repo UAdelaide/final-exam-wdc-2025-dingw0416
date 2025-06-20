@@ -41,12 +41,10 @@
     <p>Here is the <strong>dog of the day</strong>:</p >
     < img v-if="dogImage" :src="dogImage">
 
-    <!-- 硬编码狗详情 -->
     <p>Name: {{ dogName }}</p >
     <p>Breed: {{ breed }}</p >
     <p>Age: {{ age }} years old</p >
 
-    <!-- 运动负荷破坏：移动且很小的按钮 -->
     <button class="moving-button" @click="fetchDog">Reload</button>
   </div>
 
