@@ -7,7 +7,7 @@ async function main() {
   const dbConfig = {
     host: 'localhost',
     user: 'root',
-    password: 'dw19910416',
+    password: 'root1234',
     database: 'DogWalkService',
 
   };
