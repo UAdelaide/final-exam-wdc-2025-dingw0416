@@ -37,7 +37,7 @@ app.post('/login', async (req, res) => {
         return res.status(403).send('Unknown role');
       }
     } else {
-        res.status(401).send('Invalid credentials')
+        res.status(401).send('Invalid credentials');
     }
 
   } catch (err) {
