@@ -25,14 +25,7 @@ async function main() {
   const app = express();
   app.use(express.json());
 
-  /GET /api/dogs
-   * 返回所有狗：dog_name、size、owner_username
-   * Sample Response:
-   * [
-   *   { "dog_name": "Max", "size": "medium", "owner_username": "alice123" },
-   *   { "dog_name": "Bella", "size": "small", "owner_username": "carol123" }
-   * ]
-   */
+  // GET /api/dogs
   app.get('/api/dogs', async (req, res) => {
     try {
       const [rows] = await pool.query(
