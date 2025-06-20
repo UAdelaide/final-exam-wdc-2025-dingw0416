@@ -28,7 +28,7 @@ app.post('/login', async (req, res) => {
       const user = rows[0];
       req.session.user = user;
 
-  if (user.role === 'owner') {
+        if (user.role === 'owner') {
     return res.redirect('/owner-dashboard.html');
   }
 
