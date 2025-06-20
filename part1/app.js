@@ -20,51 +20,8 @@ async function main() {
     process.exit(1);
   }
 
-
-      // 插入 WalkRatings：给已 accepted 完成的请求做评分
-      // 假设前两个请求 accepted -> completed 踩坑：要确保 WalkRequests.status 为 completed 才能评分
-      // 为示例，先把某些 WalkRequests 标记为 completed：
-      await pool.query("UPDATE WalkRequests SET status='completed' WHERE status='accepted'");
-      // 然后插入对应 WalkRatings
-      // 例如为每个 completed 请求插入一个 rating
-      const [completedReqs] = await pool.query("SELECT request_id, dog_id FROM WalkRequests WHERE status='completed'");
-      for (const row of completedReqs) {
-        // 查 walker_id: 从 WalkApplications 中找已 accepted 申请
-        const [appRows] = await pool.query(
-          'SELECT walker_id FROM WalkApplications WHERE request_id = ? AND status = ? LIMIT 1',
-          [row.request_id, 'accepted']
-        );
-        if (appRows.length !== 1) continue;
-        const walkerId = appRows[0].walker_id;
-        // 查 owner_id：通过 Dogs
-        const [dogRows2] = await pool.query(
-          'SELECT owner_id FROM Dogs WHERE dog_id = ?',
-          [row.dog_id]
-        );
-        if (dogRows2.length !== 1) continue;
-        const ownerId = dogRows2[0].owner_id;
-        try {
-          await pool.query(
-            'INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating, comments) VALUES (?, ?, ?, ?, ?)',
-            [row.request_id, walkerId, ownerId, 5, 'Great walk!']
-          );
-        } catch (_) {
-          // 可能已插入或冲突，忽略
-        }
-      }
-      console.log('   → Inserted sample WalkRatings.');
-    } else {
-      console.log('ℹ️ Users table not empty: skipping test-data insertion.');
-    }
-  } catch (err) {
-    console.error('❌ Error during test-data insertion:', err);
-  }
-
-  // 创建 Express 应用
   const app = express();
 
-  // 若需要解析 JSON body，可开启 json 中间件（本例主要 GET，无需 body）
-  // app.use(express.json());
 
   // Route 1: GET /api/dogs
   app.get('/api/dogs', async (req, res) => {
