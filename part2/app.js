@@ -28,12 +28,12 @@ app.post('/login', async (req, res) => {
       const user = rows[0];
       req.session.user = user;
 
-        if (user.role === 'owner') {
-    return res.redirect('/owner-dashboard.html');
-  }
+      if (user.role === 'owner') {
+        return res.redirect('/owner-dashboard.html');
+      }
 
-  if (user.role === 'walker') {
-    return res.redirect('/walker-dashboard.html');
+      if (user.role === 'walker') {
+     return res.redirect('/walker-dashboard.html');
   }
 
   return res.status(403).send('Unknown role');
