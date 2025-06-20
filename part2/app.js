@@ -33,11 +33,11 @@ app.post('/login', async (req, res) => {
     req.session.role = user.role;
 
     if (user.role === 'owner') {
-      return res.redirect('/owner-dashboard.html');
+      res.redirect('/owner-dashboard.html');
     } else if (user.role === 'walker') {
-      return res.redirect('/walker-dashboard.html');
+      res.redirect('/walker-dashboard.html');
     } else {
-      return res.redirect('/');
+      res.redirect('/');
     }
 
   } catch (err) {
