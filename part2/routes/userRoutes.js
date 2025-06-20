@@ -55,8 +55,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
-
 // GET /users/mydogs - return all dogs owned by the current logged-in owner
 router.get('/mydogs', async (req, res) => {
   if (!req.session.user || req.session.user.role !== 'owner') {
@@ -76,3 +74,5 @@ router.get('/mydogs', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
+
+module.exports = router;
