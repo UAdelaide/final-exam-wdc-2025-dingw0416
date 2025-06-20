@@ -22,7 +22,6 @@ async function main() {
 
   const app = express();
 
-
   // Route 1: GET /api/dogs
   app.get('/api/dogs', async (req, res) => {
     try {
@@ -37,7 +36,6 @@ async function main() {
          FROM Dogs d
          JOIN Users u ON d.owner_id = u.user_id`
       );
-      // 直接返回 JSON 数组（可是一行输出）
       res.json(rows);
     } catch (err) {
       console.error('/api/dogs error:', err);
