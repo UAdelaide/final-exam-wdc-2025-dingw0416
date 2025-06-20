@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true}));
       res.status(500).json({ error: err.message });
     }
   });
+
 // -------- Login Route --------
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
