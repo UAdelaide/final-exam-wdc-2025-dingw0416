@@ -3,13 +3,13 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 
 async function main() {
-  // 数据库连接配置，请根据实际环境修改
+
   const dbConfig = {
     host: 'localhost',
     user: 'root',
-    password: '',       // 如有密码，填写相应值
+    password: '',dw19910416
     database: 'dogwalks_db',
-    // port: 3306,      // 如使用非默认端口，可取消注释并修改
+    
   };
 
   // 创建连接池并测试连接
