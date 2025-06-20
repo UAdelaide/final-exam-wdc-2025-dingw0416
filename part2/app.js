@@ -25,7 +25,7 @@ app.post('/login', async (req, res) => {
     );
 
     if (rows.length === 0 || rows[0].password_hash !== password) {
-      return res.redirect('/?error=invalid');
+      res.redirect('/?error=invalid');
     }
 
     const user = rows[0];
