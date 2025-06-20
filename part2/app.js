@@ -24,10 +24,10 @@ app.post('/login', async (req, res) => {
       [username]
     );
 
-    if (rows.length)
-    const user = rows[0];
-    req.session.userId = user.user_id;
-    req.session.role = user.role;
+    if (rows.length === 1) {}
+      const user = rows[0];
+      req.session.userId = user.user_id;
+      req.session.role = user.role;
 
     if (user.role === 'owner') {
       res.redirect('/owner-dashboard.html');
