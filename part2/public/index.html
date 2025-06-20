@@ -56,9 +56,47 @@
   <script>
     const { createApp, ref, onMounted } = Vue;
     createApp({
-      data() {
+      setup() {
+        const message = ref('Welcome to the Dog Walking Service!');
+        const dogsWithPhotos = ref([]);
+        const error = ref('');
+
+        async function fetchRandomDogImage() {
+          try {
+            const res = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data = await res.json();
+            return data.message;
+          } catch {
+            return 'https://via.placeholder.com/100x100?text=No+Image';
+          }
+        }
+
+        async function loadDogs() {
+          try {
+            const res = await fetch('/api/dogs');
+            const dogs = await res.json();
+
+            const dogsWithImages = await Promise.all(
+              dogs.map(async (dog) => {
+                const photo = await fetchRandomDogImage();
+                return { ...dog, photo };
+              })
+            );
+
+            dogsWithPhotos.value = dogsWithImages;
+          } catch (err) {
+            error.value = 'Failed to load dogs.';
+          }
+        }
+
+        onMounted(() => {
+          loadDogs();
+        });
+
         return {
-          message: 'Welcome to the Dog Walking Service!'
+          message,
+          dogsWithPhotos,
+          error
         };
       }
     }).mount('#app');
