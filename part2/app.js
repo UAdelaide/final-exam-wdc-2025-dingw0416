@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
       }
 
       if (user.role === 'walker') {
-     return res.redirect('/walker-dashboard.html');
+       return res.redirect('/walker-dashboard.html');
   }
 
   return res.status(403).send('Unknown role');
