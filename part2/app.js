@@ -26,19 +26,20 @@ app.post('/login', async (req, res) => {
 
     if (rows.length === 1) {
       const user = rows[0];
-      req.session.userId = user.user_id;
-      req.session.role = user.role;
+      req.session.user = user;
 
-      if (user.role === 'owner') {
-        return res.redirect('/owner-dashboard.html');
-      } else if (user.role === 'walker') {
-        return res.redirect('/walker-dashboard.html');
-      } else {
-        return res.status(403).send('Unknown role');
-      }
-    } else {
-        res.status(401).send('Invalid credentials');
-    }
+  if (user.role === 'owner') {
+    return res.redirect('/owner-dashboard.html');
+  }
+
+  if (user.role === 'walker') {
+    return res.redirect('/walker-dashboard.html');
+  }
+
+  return res.status(403).send('Unknown role');
+}
+
+return res.status(401).send('Invalid credentials');
 
   } catch (err) {
     console.error('Login error:', err);
