@@ -39,7 +39,7 @@
     <h1 class="blinking">Welcome to Dog Service!</h1>
 
     <p>Here is the <strong>dog of the day</strong>:</p >
-    < img :src="dogImage">
+    < img v-if="dogImage" :src="dogImage">
 
     <p>Name: {{ dogName }}</p >
     <p>Breed: {{ breed }}</p >
