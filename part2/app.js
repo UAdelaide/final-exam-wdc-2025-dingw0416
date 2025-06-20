@@ -36,6 +36,7 @@ app.post('/login', async (req, res) => {
       } else {
         return res.status(403).send('Unknown role');
       }
+    }
 
   } catch (err) {
     console.error('Login error:', err);
