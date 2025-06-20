@@ -10,8 +10,7 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   password: '',
-    database: 'DogWalkService'
-
+  database: 'DogWalkService'
   };
 // Middleware
 app.use(express.json());
