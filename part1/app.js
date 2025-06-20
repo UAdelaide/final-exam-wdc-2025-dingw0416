@@ -16,9 +16,9 @@ async function main() {
   try {
     pool = mysql.createPool(dbConfig);
     await pool.query('SELECT 1');
-    console.log('✅ Connected to MySQL database');
+    console.log(' Connected to MySQL database');
   } catch (err) {
-    console.error('❌ Failed to connect to database:', err);
+    console.error(' Failed to connect to database:', err);
     process.exit(1);
   }
 
@@ -69,16 +69,7 @@ async function main() {
   });
 
   // GET /api/walkers/summary
-   * 返回每个 walker 的摘要：walker_username、total_ratings、average_rating、completed_walks
-   * - total_ratings: 该 walker 在 WalkRatings 表中的评分数
-   * - average_rating: 平均评分，若无评分则为 null
-   * - completed_walks: 认为与 total_ratings 相同，表示已完成并被评分的遛狗次数
-   * Sample Response:
-   * [
-   *   { "walker_username": "bobwalker", "total_ratings": 2, "average_rating": 4.5, "completed_walks": 2 },
-   *   { "walker_username": "newwalker", "total_ratings": 0, "average_rating": null, "completed_walks": 0 }
-   * ]
-   */
+
   app.get('/api/walkers/summary', async (req, res) => {
     try {
       const [rows] = await pool.query(
@@ -99,10 +90,10 @@ async function main() {
     }
   });
 
-  // 启动服务器
+
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
-    console.log(`🚀 Server listening on port ${PORT}`);
+    console.log(` Server listening on port ${PORT}`);
   });
 }
 
