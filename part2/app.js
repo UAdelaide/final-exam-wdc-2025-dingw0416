@@ -29,12 +29,12 @@ app.post('/login', async (req, res) => {
       req.session.userId = user.user_id;
       req.session.role = user.role;
 
-    if (user.role === 'owner') {
-      res.redirect('/owner-dashboard.html');
-    } else if (user.role === 'walker') {
-      res.redirect('/walker-dashboard.html');
-    } else {
-      res.redirect('/');
+      if (user.role === 'owner') {
+        res.redirect('/owner-dashboard.html');
+      } else if (user.role === 'walker') {
+        res.redirect('/walker-dashboard.html');
+      } else {
+        res.redirect('/');
     }
 
   } catch (err) {
