@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password:'',
-  database: process.env.DB_NAME || 'dogwalks_db',
+  database: 'dogwalks_db',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
