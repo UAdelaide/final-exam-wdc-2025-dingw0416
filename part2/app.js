@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const session = require('express-session');
-const pool = require('.dbConfig.js');
+const pool = require('./dbConfig.js');
 const app = express();
 
 // Middleware
