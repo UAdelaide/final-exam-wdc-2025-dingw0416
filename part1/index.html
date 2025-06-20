@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog of the Day</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <style>
+    /* 仅保留一项认知负荷破坏：闪烁标题 */
+    .blinking {
+      animation: blink 1s steps(2) infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* 仅保留一项运动负荷破坏：移动且很小的按钮 */
+    .moving-button {
+      position: relative;
+      left: 0;
+      animation: movebtn 2s infinite;
+      font-size: 8px; /* 很小，难点按 */
+      padding: 2px 4px;
+    }
+    @keyframes movebtn {
+      0% { left: 0; }
+      50% { left: 50px; }
+      100% { left: 0; }
+    }
+
+    /* 保留一项可访问性破坏：图片缺少 alt 属性 */
+    img {
+      display: block;
+      margin: 10px 0;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 认知负荷破坏：闪烁标题 -->
+    <h1 class="blinking">Welcome to Dog Service!</h1>
+
+    <p>Here is the <strong>dog of the day</strong>:</p >
+    <!-- 可访问性破坏：缺少 alt 属性 -->
+    < img v-if="dogImage" :src="dogImage">
+
+    <!-- 硬编码狗详情 -->
+    <p>Name: {{ dogName }}</p >
+    <p>Breed: {{ breed }}</p >
+    <p>Age: {{ age }} years old</p >
+
+    <!-- 运动负荷破坏：移动且很小的按钮 -->
+    <button class="moving-button" @click="fetchDog">Reload</button>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          dogImage: '',
+          dogName: 'Fido',
+          breed: 'Unknown',
+          age: 5
+        }
+      },
+      methods: {
+        fetchDog() {
+          fetch('https://dog.ceo/api/breeds/image/random')
+            .then(res => res.json())
+            .then(data => {
+              this.dogImage = data.message;
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        }
+      },
+      mounted() {
+        this.fetchDog();
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
