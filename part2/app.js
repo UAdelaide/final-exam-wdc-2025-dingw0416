@@ -10,10 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
-  secret: 'mysecretkey123', 
+  secret: 'mysecretkey123',
   resave: false,
   saveUninitialized: false
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
 app.use(session({
