@@ -8,11 +8,10 @@ async function main() {
     host: 'localhost',
     user: 'root',
     password: '',dw19910416
-    database: 'dogwalks_db',
-    
+    database: 'DogWalkService',
+
   };
 
-  // 创建连接池并测试连接
   let pool;
   try {
     pool = mysql.createPool(dbConfig);
