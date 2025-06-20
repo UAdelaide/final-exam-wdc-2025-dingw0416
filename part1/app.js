@@ -23,11 +23,9 @@ async function main() {
   }
 
   const app = express();
-  // If you need JSON body parsing for other routes, enable:
-  // app.use(express.json());
+  app.use(express.json());
 
-  /**
-   * GET /api/dogs
+  /GET /api/dogs
    * 返回所有狗：dog_name、size、owner_username
    * Sample Response:
    * [
