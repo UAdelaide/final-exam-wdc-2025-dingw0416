@@ -36,7 +36,7 @@ async function main() {
          FROM Dogs d
          JOIN Users u ON d.owner_id = u.user_id`
       );
-      // 直接返回 JSON 数组
+
       res.json(rows);
     } catch (err) {
       console.error('/api/dogs error:', err);
@@ -44,21 +44,8 @@ async function main() {
     }
   });
 
-  /**
-   * GET /api/walkrequests/open
-   * 返回所有 status = 'open' 的请求：request_id、dog_name、requested_time、duration_minutes、location、owner_username
-   * Sample Response:
-   * [
-   *   {
-   *     "request_id": 1,
-   *     "dog_name": "Max",
-   *     "requested_time": "2025-06-10T08:00:00.000Z",
-   *     "duration_minutes": 30,
-   *     "location": "Parklands",
-   *     "owner_username": "alice123"
-   *   }
-   * ]
-   */
+  //GET /api/walkrequests/open
+
   app.get('/api/walkrequests/open', async (req, res) => {
     try {
       const [rows] = await pool.query(
@@ -81,8 +68,7 @@ async function main() {
     }
   });
 
-  /**
-   * GET /api/walkers/summary
+  // GET /api/walkers/summary
    * 返回每个 walker 的摘要：walker_username、total_ratings、average_rating、completed_walks
    * - total_ratings: 该 walker 在 WalkRatings 表中的评分数
    * - average_rating: 平均评分，若无评分则为 null
