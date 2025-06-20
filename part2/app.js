@@ -24,10 +24,7 @@ app.post('/login', async (req, res) => {
       [username]
     );
 
-    if (rows.length === 0 || rows[0].password_hash !== password) {
-      res.redirect('/?error=invalid');
-    }
-
+    if 
     const user = rows[0];
     req.session.userId = user.user_id;
     req.session.role = user.role;
