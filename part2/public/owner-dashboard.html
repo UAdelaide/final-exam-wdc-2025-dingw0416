@@ -101,10 +101,10 @@
             if (!res.ok) throw new Error('Failed to load dogs');
             myDogs.value = await res.json();
           } catch (err) {
-          console.error(err);
-          error.value = 'Could not fetch dogs';
+            console.error(err);
+            error.value = 'Could not fetch dogs';
+          }
         }
-      }
         async function submitWalkRequest() {
           try {
             const res = await fetch('/api/walks', {
