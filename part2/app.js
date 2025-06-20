@@ -13,7 +13,15 @@ const dbConfig = {
   database: 'DogWalkService'
   };
 
-
+let pool;
+  try {
+    pool = mysql.createPool(dbConfig);
+    await pool.query('SELECT 1');
+    console.log(' Connected to MySQL database');
+  } catch (err) {
+    console.error(' Failed to connect to database:', err);
+    process.exit(1);
+  }
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
