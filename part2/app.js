@@ -48,7 +48,16 @@ app.post('/login', async (req, res) => {
   }
 });
 // -------- Login Route --------
-
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).send('Could not log out');
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/index.html');
+  });
+});
 // -------- Protected Dashboards --------
 function ensureAuthenticated(req, res, next) {
   if (req.session.userId) return next();
