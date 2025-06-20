@@ -13,7 +13,6 @@ async function main() {
   let pool;
   try {
     pool = mysql.createPool(dbConfig);
-    // 测试连接
     await pool.query('SELECT 1');
     console.log('✅ Connected to MySQL database');
   } catch (err) {
