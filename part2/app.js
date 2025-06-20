@@ -47,7 +47,7 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-// -------- Login Route --------
+// -------- Logout Route --------
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
