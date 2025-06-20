@@ -14,7 +14,7 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app
+app.use(express.urlencoded({ extended: true}))
 
 // -------- Login Route --------
 app.post('/login', async (req, res) => {
